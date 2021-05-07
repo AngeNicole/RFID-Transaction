@@ -3,11 +3,31 @@ const CardSchema = new mongoose.Schema({
     cardID: {
         type: String,
         required: true,
-        unique: true,
     },
-    balance: {
-        type: String,
+    current_balance: {
+        type: Number,
         required: false,
     },
 });
-module.exports = mongoose.model("Card", CardSchema);
+
+const TransactionSchema = new mongoose.Schema({
+    cardID: {
+        type: String,
+        required: true,
+    },
+    new_balance: {
+        type: Number,
+        required: false,
+    },
+    transaction_fare: {
+        type: Number,
+        required: false,
+    },
+}, {
+    timestamps: true,
+});
+module.exports.Card = mongoose.model("NicoCard", CardSchema);
+module.exports.Transactions = mongoose.model(
+    "NicoTransaction",
+    TransactionSchema
+);

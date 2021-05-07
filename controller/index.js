@@ -1,7 +1,8 @@
-const Card = require("../model/index");
+const { Card } = require("../model/index");
+const { Transactions } = require("../model/index");
 
 exports.getAllTransactions = async(req, res) => {
-    const transactions = await Transactions.find({});
+    const transactions = await Transactions.find();
     return res.send(transactions).status(200);
 };
 module.exports.AllCards = async(req, res) => {
@@ -27,23 +28,28 @@ exports.getRFIDTransactions = async(req, res) => {
     return res.send(transactions).status(200);
 };
 exports.newTransaction = async(req, res) => {
-    const rfid = await Card.findOne({ uuid: req.body.rfid });
+    const rfid = await Card.findOne({ cardID: req.body.cardID });
     if (!rfid) {
         return res.status(404).send({ message: "RFID not found" });
     }
     if (!req.body.transaction_fare) {
         return res.status(400).send({ message: "Transaction fare required" });
     }
-    if (rfid.current_balance < req.body.transaction_fare) {
-        return res
-            .status(400)
-            .send({ message: "Transaction fare is greater that card amount" });
+    if (
+        req.body.type != "deposit" &&
+        rfid.current_balance < req.body.transaction_fare
+    ) {
+        return res.status(400).send({ message: "Insufficient balance" });
     }
-    rfid.current_balance =
-        rfid.current_balance - parseInt(req.body.transaction_fare);
+    if (req.body.type === "deposit") {
+        rfid.current_balance =
+            parseInt(rfid.current_balance) + parseInt(req.body.transaction_fare);
+    } else
+        rfid.current_balance =
+        parseInt(rfid.current_balance) - parseInt(req.body.transaction_fare);
     const updated = await rfid.save();
     const transaction = new Transactions({
-        card_id: updated.uuid,
+        cardID: updated.cardID,
         transaction_fare: parseInt(req.body.transaction_fare),
         new_balance: updated.current_balance,
     });
@@ -67,7 +73,7 @@ module.exports.newCard = async(req, res) => {
         }
         const card = await Card.create({
             cardID: req.body.cardID,
-            balance: parseInt(req.body.balance || 0),
+            current_balance: parseInt(req.body.current_balance || 0),
         });
 
         if (card) {
