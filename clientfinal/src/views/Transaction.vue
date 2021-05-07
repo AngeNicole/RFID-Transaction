@@ -29,6 +29,8 @@ export default {
         { text: "Transaction fare", value: "transaction_fare" },
 
         { text: "Current balance", value: "new_balance" },
+
+        { text: "Transaction Type", value: "type" },
         
         { text: "Time", value: "createdAt" },
 

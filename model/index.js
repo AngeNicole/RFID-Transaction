@@ -19,6 +19,10 @@ const TransactionSchema = new mongoose.Schema({
         type: Number,
         required: false,
     },
+    type: {
+        type: String,
+        required: true
+    },
     transaction_fare: {
         type: Number,
         required: false,

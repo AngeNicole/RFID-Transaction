@@ -51,6 +51,7 @@ exports.newTransaction = async(req, res) => {
     const transaction = new Transactions({
         cardID: updated.cardID,
         transaction_fare: parseInt(req.body.transaction_fare),
+        type: req.body.type,
         new_balance: updated.current_balance,
     });
 
