@@ -1,18 +1,34 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">RFID</div>
+    <v-app-bar app color="#6C63FF" font="Nunito">
+
+      <router-link to="/home">
+      <span>
+          <v-btn text color="#fff" x-large="true" rounded="true"> RFID </v-btn>
+        </span>
+      </router-link>
 
       <v-spacer></v-spacer>
 
-      <router-link to="/mycards"></router-link>
+      <router-link to="/transactions/:uuid">
+      <span>
+          <v-btn text color="#fff"> Detailed Transactions </v-btn>
+        </span>
+      </router-link>
 
-      <router-link to="/transaction">
+      <router-link to="/cards">
+      <span>
+          <v-btn text color="#fff"> All Cards </v-btn>
+        </span>
+      </router-link>
+
+      <router-link to="/transactions">
         <span>
-          <v-btn text> Transaction </v-btn>
+          <v-btn text color="#fff"> Transaction </v-btn>
           <!--  <v-icon>mdi-open-in-new</v-icon> -->
         </span>
       </router-link>
+      
     </v-app-bar>
 
     <v-main>

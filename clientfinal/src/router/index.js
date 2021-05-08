@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Transaction from "../views/Transaction";
 import MyCards from "../views/Mycards";
 import AllTransactions from "../views/DetailedTransactions";
+import Home from "../views/Home";
 
 
 Vue.use(VueRouter);
@@ -18,9 +19,14 @@ const routes = [{
         component: MyCards
     },
     {
-        path: "/transaction",
+        path: "/transactions",
         name: "transaction",
         component: Transaction,
+    },
+    {
+        path: "/home",
+        name: "Home",
+        component: Home,
     },
 
 ];
