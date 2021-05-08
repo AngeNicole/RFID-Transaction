@@ -17,14 +17,14 @@ module.exports.AllCards = async(req, res) => {
     }
 };
 exports.checkCard = async(req, res) => {
-    const card = await Card.find({ uuid: req.params.uuid });
-    if (card) {
-        return res.send({ card, success: true });
+    const card = await Card.find({ cardID: req.params.cardID });
+    if (cards) {
+        return res.send({ cards, success: true });
     }
     return res.send({ success: false });
 };
 exports.getRFIDTransactions = async(req, res) => {
-    const transactions = await Transactions.find({ card_id: req.params.uuid });
+    const transactions = await Transactions.find({ card_id: req.params.cardID });
     return res.send(transactions).status(200);
 };
 exports.newTransaction = async(req, res) => {

@@ -5,9 +5,12 @@
 
       <v-spacer></v-spacer>
 
+      <router-link to="/mycards"></router-link>
+
       <router-link to="/transaction">
         <span>
-          <v-btn text> Transaction </v-btn> <v-icon>mdi-open-in-new</v-icon>
+          <v-btn text> Transaction </v-btn>
+          <!--  <v-icon>mdi-open-in-new</v-icon> -->
         </span>
       </router-link>
     </v-app-bar>
@@ -21,7 +24,6 @@
 <script>
 export default {
   name: "App",
-
   data: () => ({
     //
   }),
@@ -29,5 +31,4 @@ export default {
 </script>
 
 <style lang="#">
-
 </style>

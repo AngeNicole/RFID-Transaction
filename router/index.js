@@ -13,8 +13,6 @@ Router.get("/cards", AllCards);
 Router.post("/cards", newCard);
 // Router.get("/cards/:uuid", checkCard);
 Router.get("/transactions", getAllTransactions);
-// Router.get("/transactions/:uuid", getRFIDTransactions);
+Router.get("/transactions/:uuid", getRFIDTransactions);
 Router.post("/transactions", newTransaction);
-// Router.get("/api/transactions", newTransaction);
-
 module.exports = Router;

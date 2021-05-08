@@ -5,7 +5,7 @@
 
       <v-spacer></v-spacer>
     </v-card-title>
-    <v-data-table :headers="headers" :items="TransactionList">
+    <v-data-table :headers="headers" :items="MyCardsList">
       <v-toolbar>
         <v-toolbar-title></v-toolbar-title>
       </v-toolbar>
@@ -18,7 +18,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      TransactionList: [],
+      MyCardsList: [],
       headers: [
         {
           text: "cardID",
@@ -26,19 +26,19 @@ export default {
           filterable: false,
           value: "cardID",
         },
-        { text: "Transaction fare", value: "transaction_fare" },
-        { text: "Current balance", value: "new_balance" },
-        { text: "Transaction Type", value: "type" },
-        { text: "Time", value: "createdAt" },
+        // { text: "Transaction fare", value: "transaction_fare" },
+        // { text: "Current balance", value: "new_balance" },
+        // { text: "Transaction Type", value: "type" },
+        { text: "Balance", value: "current_balance" },
       ],
     };
   },
   mounted() {
     setInterval(() => {
       axios
-        .get("http://localhost:4040/api/transactions")
+        .get("http://localhost:4040/api/cards")
         .then((response) => {
-          this.TransactionList = response.data;
+          this.MyCardsList = response.data;
        // console.log(response.data);
         });
     }, 500);

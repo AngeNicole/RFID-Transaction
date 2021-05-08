@@ -1,11 +1,11 @@
 <template>
   <v-card :style="{ marign: 20 }">
     <v-card-title>
-      RFID TRANSACTION HISTORY
+      RFID Transaction Details
 
       <v-spacer></v-spacer>
     </v-card-title>
-    <v-data-table :headers="headers" :items="TransactionList">
+    <v-data-table :headers="headers" :items="AllTransactions">
       <v-toolbar>
         <v-toolbar-title></v-toolbar-title>
       </v-toolbar>
@@ -18,7 +18,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      TransactionList: [],
+      AllTransactions: [],
       headers: [
         {
           text: "cardID",
@@ -27,21 +27,24 @@ export default {
           value: "cardID",
         },
         { text: "Transaction fare", value: "transaction_fare" },
-        { text: "Current balance", value: "new_balance" },
         { text: "Transaction Type", value: "type" },
-        { text: "Time", value: "createdAt" },
+        { text: "New balance", value: "new_balance" },
+        { text: "Time", value: "updatedAt" },
       ],
     };
   },
   mounted() {
     setInterval(() => {
       axios
-        .get("http://localhost:4040/api/transactions")
+        .get("http://localhost:4040/api/transactions/:uuid")
         .then((response) => {
-          this.TransactionList = response.data;
+          this.AllTransactions = response.data;
        // console.log(response.data);
         });
     }, 500);
   },
 };
 </script>
+
+
+
