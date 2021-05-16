@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-img
-    src="../../../../card2.png"
+    src="../../../../../../Downloads/card2.png"
     height=400
     width=600
     >
